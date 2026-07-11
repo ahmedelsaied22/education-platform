@@ -83,6 +83,33 @@ Check out a few resources that may come in handy when working with NestJS:
 - To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
 - Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
 
+## Discription
+E-Learning Platform Backend (NestJS) 🚀
+مستودع الكود الخاص بالـ Backend لمنصة التعليم الإلكتروني متعددة المحاضرين، تم بناؤه باستخدام NestJS كإطار عمل متكامل، مرن، وقابل للتوسع (Scalable).
+🏗️ بنية المشروع والـ Modules الأساسية
+تم تقسيم النظام إلى موديولات مستقلة لضمان سهولة الصيانة والتطوير (Modular Architecture):
+1. Auth & Users Module
+نظام تسجيل الدخول وإدارة الصلاحيات باستخدام JWT و Passport.
+دعم الأدوار المختلفة في النظام باستخدام Decorators مخصصة: [Admin, Instructor, Student].
+2. Courses Module
+للمحاضرين: إنشاء الكورسات، تقسيمها إلى فصول (Sections) ودروس (Lectures)، ورفع ملفات الـ PDF.
+للإدارة: مراجعة الكورسات وتغيير حالتها إلى Approved أو Rejected.
+للطلاب: استعراض الكورسات وتتبع نسبة التقدم (Progress Tracking).
+3. Video Module (VdoCipher Integration)
+التكامل مع API الخاص بـ VdoCipher لتوليد روابط تشغيل آمنة ومشفرة (OTP/Playback) تمنع تحميل الفيديوهات أو تسريبها.
+4. Payments Module (Stripe & Dynamic Pricing)
+Stripe Integration: معالجة عمليات الدفع والاشتراكات.
+Dynamic Pricing Guard: الـ Middleware بيحدد الـ IP الخاص بالطلب لمعرفة الدولة، وبناءً عليه بيتم تطبيق السعر المخصص (داخل مصر / خارج مصر).
+Refund Guard: نظام حماية يمنع استرداد الأموال (Refund) إذا تخطى تقدم الطالب في الكورس نسبة 25% (يتم التحقق منها عبر قاعدة البيانات قبل إتمام طلب الاسترداد).
+5. Wallets & Commissions Module
+حساب النسب تلقائياً: عند شراء أي كورس، يقوم الـ Service بتقسيم المبلغ برمجياً: 60% لمحفظة المحاضر و 40% لمحفظة المنصة.
+Withdrawal System: نظام لإدارة طلبات السحب، حيث يتم التحقق من أن رصيد المحاضر يتخطى الحد الأدنى المسموح به قبل تحويل حالة الطلب إلى Approved.
+🛠️ التقنيات المستخدمة (Tech Stack)
+Framework: NestJS (TypeScript)
+Database ORM: TypeORM ( PostgreSQL)
+Security: Helmet, bcrypt, Passport-JWT
+Third-Party APIs: Stripe SDK, VdoCipher API
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
