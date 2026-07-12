@@ -110,6 +110,8 @@ Database ORM: TypeORM ( PostgreSQL)
 Security: Helmet, bcrypt, Passport-JWT
 Third-Party APIs: Stripe SDK, VdoCipher API
 
+<img src="./images//education-platform-erd">
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
