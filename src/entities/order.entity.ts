@@ -1,6 +1,12 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./user.entity";
 import { Course } from "./course.entity";
+
+export const enum PaymentStatus {
+    PENDING = "PENDING",
+    COMPLETED = "COMPLETED",
+    FAILED = "FAILED"
+}
 
 @Entity()
 export class Order {
@@ -10,13 +16,14 @@ export class Order {
     @Column()
     price?: number;
 
-    @Column()
-    paymentStatus?: string;
+    @Column({ type: 'varchar', length: 50, default: PaymentStatus.PENDING })
+    paymentStatus?: PaymentStatus;
 
     @ManyToOne(() => User, (user) => user.orders, { onDelete: "CASCADE" })
-    user?: User;
+    @JoinColumn({ name: "userId" })
+    student?: User;
 
-    @OneToMany(() => Course, (course) => course.orders)
-    @JoinColumn({ name: "orderId" })
+    @ManyToMany(() => Course, (course) => course.orders)
+    @JoinTable({ name: "order_items" })
     courses?: Course[];
 }

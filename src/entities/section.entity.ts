@@ -13,6 +13,10 @@ export class Section {
     @Column()
     description?: string;
 
+    // order of the section in the course
+    @Column()
+    order?: number;
+
     @ManyToOne(() => Course, (course) => course.sections, { onDelete: "CASCADE" })
     @JoinColumn({ name: "courseId" })
     course?: Course;

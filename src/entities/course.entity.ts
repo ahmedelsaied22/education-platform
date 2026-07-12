@@ -2,6 +2,7 @@ import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany
 import { User } from "./user.entity";
 import { Section } from "./section.entity";
 import { Order } from "./order.entity";
+import { Review } from "./review.entity";
 
 @Entity()
 export class Course {
@@ -17,14 +18,13 @@ export class Course {
     @OneToMany(() => Section, (section) => section.course)
     sections?: Section[];
 
-    // @ManyToOne(() => User, (user) => user.courses, { onDelete: "CASCADE" })
-    // @JoinColumn({ name: "instructorId" })
-    // instructor?: User;
-
     @ManyToMany(() => User, (user) => user.enrolledCourses)
     @JoinTable({ name: "student_enrolled_courses" })
     students?: User[];
 
-    @ManyToOne(() => Order, (order) => order.courses, { onDelete: "CASCADE" })
-    orders?: Order;
+    @ManyToMany(() => Order, (order) => order.courses)
+    orders?: Order[];
+
+    @OneToMany(() => Review, (review) => review.course)
+    reviews?: Review[];
 }

@@ -2,8 +2,10 @@ import { Column, CreateDateColumn, Entity, JoinColumn, ManyToMany, OneToMany, On
 import { Course } from "./course.entity";
 import { Order } from "./order.entity";
 import { LessonProgress } from "./lessonProgress.entity";
+import { Review } from "./review.entity";
+import { Withdrawal } from "./withdrawal.entity";
 
-const enum UserRole {
+export const enum UserRole {
     STUDENT = "STUDENT",
     INSTRUCTOR = "INSTRUCTOR",
     ADMIN = "ADMIN"
@@ -41,16 +43,29 @@ export class User {
     @Column()
     City?: string;
 
+    @Column()
+    emailVerified?: boolean;
+
+    @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+    emailVerifiedAt?: Date;
+
+
     @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     createdAt?: Date;
 
     @ManyToMany(() => Course, (course) => course.students)
     enrolledCourses?: Course[];
 
-    @OneToMany(() => Order, (order) => order.user)
+    @OneToMany(() => Order, (order) => order.student)
     @JoinColumn({ name: "userId" })
     orders?: Order[];
 
     @OneToMany(() => LessonProgress, (lessonProgress) => lessonProgress.student)
     lessonProgresses?: LessonProgress[];
+
+    @OneToMany(() => Review, (review) => review.student)
+    reviews?: Review[];
+
+    @OneToMany(() => Withdrawal, (withdrawal) => withdrawal.instructor)
+    withdrawals?: Withdrawal[];
 }

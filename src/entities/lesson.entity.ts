@@ -19,6 +19,10 @@ export class Lesson {
     @Column()
     duration?: number;
 
+    // order of the lesson in the section
+    @Column()
+    order?: number;
+
     @ManyToOne(() => Section, (section) => section.lessons, { onDelete: "CASCADE" })
     section?: Section;
 
