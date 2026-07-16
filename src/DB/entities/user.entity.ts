@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToMany, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, Index, JoinColumn, ManyToMany, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Course } from "./course.entity";
 import { Order } from "./order.entity";
 import { LessonProgress } from "./lessonProgress.entity";
@@ -12,6 +12,7 @@ export const enum UserRole {
 }
 
 @Entity()
+@Index(['email'], { unique: true })
 export class User {
     @PrimaryGeneratedColumn()
     id?: number;
@@ -31,9 +32,6 @@ export class User {
     @Column()
     phone?: string;
 
-    @Column()
-    address?: string;
-
     @Column({ type: 'int'})
     age?: number;
 
@@ -41,17 +39,28 @@ export class User {
     country?: string;
 
     @Column()
-    City?: string;
+    city?: string;
 
-    @Column()
+    @Column({ default: '' })
+    otp?: string;
+
+    @CreateDateColumn()
+    otpExpiredAt?: Date;
+
+    @Column({ default: false })
     emailVerified?: boolean;
 
     @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     emailVerifiedAt?: Date;
 
-
     @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     createdAt?: Date;
+
+    @Column({ nullable: true, default: null })
+    refreshToken?: string;
+
+    @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+    refreshTokenExpiredAt?: Date;
 
     @ManyToMany(() => Course, (course) => course.students)
     enrolledCourses?: Course[];
