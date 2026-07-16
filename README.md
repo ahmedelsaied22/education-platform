@@ -86,11 +86,18 @@ Check out a few resources that may come in handy when working with NestJS:
 ## Discription
 E-Learning Platform Backend (NestJS) 🚀
 مستودع الكود الخاص بالـ Backend لمنصة التعليم الإلكتروني متعددة المحاضرين، تم بناؤه باستخدام NestJS كإطار عمل متكامل، مرن، وقابل للتوسع (Scalable).
+
+<img src="./images//education-platform-erd">
+
 🏗️ بنية المشروع والـ Modules الأساسية
 تم تقسيم النظام إلى موديولات مستقلة لضمان سهولة الصيانة والتطوير (Modular Architecture):
 1. Auth & Users Module
 نظام تسجيل الدخول وإدارة الصلاحيات باستخدام JWT و Passport.
 دعم الأدوار المختلفة في النظام باستخدام Decorators مخصصة: [Admin, Instructor, Student].
+
+<<img src="./images//login.png">>
+<<img src="./images//register.png">>
+
 2. Courses Module
 للمحاضرين: إنشاء الكورسات، تقسيمها إلى فصول (Sections) ودروس (Lectures)، ورفع ملفات الـ PDF.
 للإدارة: مراجعة الكورسات وتغيير حالتها إلى Approved أو Rejected.
@@ -109,8 +116,6 @@ Framework: NestJS (TypeScript)
 Database ORM: TypeORM ( PostgreSQL)
 Security: Helmet, bcrypt, Passport-JWT
 Third-Party APIs: Stripe SDK, VdoCipher API
-
-<img src="./images//education-platform-erd">
 
 ## Support
 
