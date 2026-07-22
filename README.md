@@ -102,6 +102,9 @@ E-Learning Platform Backend (NestJS) 🚀
 للمحاضرين: إنشاء الكورسات، تقسيمها إلى فصول (Sections) ودروس (Lectures)، ورفع ملفات الـ PDF.
 للإدارة: مراجعة الكورسات وتغيير حالتها إلى Approved أو Rejected.
 للطلاب: استعراض الكورسات وتتبع نسبة التقدم (Progress Tracking).
+
+<img src="./images/instructor-courses.png">
+
 3. Video Module (VdoCipher Integration)
 التكامل مع API الخاص بـ VdoCipher لتوليد روابط تشغيل آمنة ومشفرة (OTP/Playback) تمنع تحميل الفيديوهات أو تسريبها.
 4. Payments Module (Stripe & Dynamic Pricing)
