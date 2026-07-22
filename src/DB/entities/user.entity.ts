@@ -6,9 +6,9 @@ import { Review } from "./review.entity";
 import { Withdrawal } from "./withdrawal.entity";
 
 export const enum UserRole {
-    STUDENT = "STUDENT",
-    INSTRUCTOR = "INSTRUCTOR",
-    ADMIN = "ADMIN"
+    STUDENT = "student",
+    INSTRUCTOR = "instructor",
+    ADMIN = "admin"
 }
 
 @Entity()
@@ -65,8 +65,12 @@ export class User {
     @ManyToMany(() => Course, (course) => course.students)
     enrolledCourses?: Course[];
 
+    @OneToMany(() => Course, (course) => course.instructor)
+    // @JoinColumn({ name: 'instructorCourses'})
+    instructorCourses?: Course[];
+
     @OneToMany(() => Order, (order) => order.student)
-    @JoinColumn({ name: "userId" })
+    // @JoinColumn({ name: "userId" })
     orders?: Order[];
 
     @OneToMany(() => LessonProgress, (lessonProgress) => lessonProgress.student)

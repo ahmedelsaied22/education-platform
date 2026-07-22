@@ -10,13 +10,14 @@ export interface AuthReq extends Request {
 }
 
 @Injectable()
-export class StudentGaurd implements CanActivate {
+export class AuthGaurd implements CanActivate {
     constructor(private readonly JWT: JWTService,
         @InjectRepository(User) private readonly userRepository: Repository<User>,
     ) {}
   async canActivate(
     context: ExecutionContext,
   ): Promise<boolean> {
+    try {
     const request = context.switchToHttp().getRequest();
     const auth = request.headers['authorization'];
 
@@ -43,5 +44,9 @@ export class StudentGaurd implements CanActivate {
     request.user = user;
 
     return true;
+    } catch (err: any) {
+      const message = err instanceof Error ? err.message : String(err);
+      throw new BadRequestException("AuthGuard Error => " + message);
+    }
   }
 }

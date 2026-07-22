@@ -4,7 +4,7 @@ import { CreateUserDTO } from 'src/common/DTO`s/auth/createUser.dto';
 import { User } from 'src/DB/entities/user.entity';
 import { VerifyEmailDTO } from 'src/common/DTO`s/auth/verifyEmail.dto';
 import { LoginDTO } from 'src/common/DTO`s/auth/login.dto';
-import { type AuthReq, StudentGaurd } from 'src/common/Gaurds/student.gaurd';
+import { AuthGaurd, type AuthReq } from 'src/common/Gaurds/auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -41,14 +41,14 @@ export class AuthController {
     }
 
     @Post('logout')
-    @UseGuards(StudentGaurd)
+    @UseGuards(AuthGaurd)
     async logout(@Req() req: AuthReq) {
         const user = req.user;
         return await this.authService.logout(user);
     }
 
     @Post('me')
-    @UseGuards(StudentGaurd)
+    @UseGuards(AuthGaurd)
     async me(@Req() req: AuthReq) {
         const user = req.user;
         return {

@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
+import { CoursesModule } from './courses/courses.module';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true }),
@@ -19,7 +21,9 @@ import { AuthModule } from './auth/auth.module';
  "entities": ["dist/**/*.entity{.ts,.js}"],
  "synchronize": true  // set to false in production
 }),
-    AuthModule
+    AuthModule,
+    CoursesModule,
+    CloudinaryModule
   ],
   controllers: [AppController],
   providers: [AppService],
