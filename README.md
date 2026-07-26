@@ -105,6 +105,20 @@ E-Learning Platform Backend (NestJS) 🚀
 
 <img src="./images/instructor-courses.png">
 
+##############################################
+
+  -- Adding Swagger UI for the project 
+
+  <img src="./images/Swagger-Education-Platform.png">
+  <img src="./images/Swagger-Pagination-Searching-Education-Platform.png">
+
+##############################################
+
+  -- Docker Desktop 
+  <img src="./images/compose - Docker Desktop Education-platform.png">
+
+##############################################
+
 3. Video Module (VdoCipher Integration)
 التكامل مع API الخاص بـ VdoCipher لتوليد روابط تشغيل آمنة ومشفرة (OTP/Playback) تمنع تحميل الفيديوهات أو تسريبها.
 4. Payments Module (Stripe & Dynamic Pricing)

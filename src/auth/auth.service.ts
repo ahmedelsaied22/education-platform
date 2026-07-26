@@ -8,6 +8,7 @@ import { SendEmail } from 'src/utils/email/send-email';
 import { Compare, Hash } from 'src/utils/security/hash';
 import { VerifyEmailDTO } from 'src/common/DTO`s/auth/verifyEmail.dto';
 import { LoginDTO } from 'src/common/DTO`s/auth/login.dto';
+import { ResendVerification } from 'src/common/DTO`s/auth/resendVerification.dto';
 
 @Injectable()
 export class AuthService {
@@ -75,7 +76,7 @@ export class AuthService {
     }
   }
 
-  async resendVerification(body: {email: string}) {
+  async resendVerification(body: ResendVerification) {
     const isEmailExist = await this.userRepository.findOne({
       where: {
         email: body.email,

@@ -5,7 +5,7 @@ import { CreateCourseDTO } from 'src/common/DTO`s/courses/createCourse.dto';
 import { UpdateCoureDTO } from 'src/common/DTO`s/courses/updateCoures.dto';
 import { Course } from 'src/DB/entities/course.entity';
 import { User, UserRole } from 'src/DB/entities/user.entity';
-import { Repository } from 'typeorm';
+import { Between, ILike, LessThanOrEqual, MoreThanOrEqual, Repository } from 'typeorm';
 
 @Injectable()
 export class CoursesService {
@@ -34,6 +34,7 @@ export class CoursesService {
         const course = this.courseRepository.create({
             title: courseData.title,
             description: courseData.description,
+            price: courseData.price,
             instructor: {
                 id: user.id,
             },
@@ -109,8 +110,25 @@ export class CoursesService {
     }
 
     // for all users
-    async getAllCourses(){
-        const allCourses = await this.courseRepository.find();
+    async getAllCourses(page: number, title: string, minPrice: number, maxPrice: number){
+        if (!page) page = 1;
+        const where: any = {};
+        if (title) {
+            where.title = ILike(`%${title}%`)
+        }
+        if (minPrice !== undefined && maxPrice !== undefined) {
+            where.price = Between(minPrice, maxPrice)
+        } else if (minPrice !== undefined) {
+            where.price = MoreThanOrEqual(minPrice)
+        } else if (maxPrice !== undefined) {
+            where.price = LessThanOrEqual(maxPrice)
+        }
+
+        const allCourses = await this.courseRepository.find({
+            skip: (page - 1) * 5,
+            take: 5,
+            where,
+        });
 
         return {
             data: allCourses,

@@ -23,6 +23,9 @@ export class Course {
     @Column()
     description?: string;
 
+    @Column()
+    price?: number;
+
     @Column(() => Image)
     image?: Image; 
 

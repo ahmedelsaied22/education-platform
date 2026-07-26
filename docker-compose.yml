@@ -5,8 +5,6 @@ services:
     image: postgres:15.3-alpine
     restart: always
     environment:
-      POSTGRES_HOST: postgres-db
-      POSTGRES_PORT: 5432
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: "0000"
       POSTGRES_DB: postgres
@@ -23,10 +21,12 @@ services:
       - "4000:4000"
     environment:
       - DB_HOST=postgres-db
-      - DB_PORT=5432
+      - DB_PORT=Number(5432)
       - DB_USERNAME=postgres
       - DB_PASSWORD=0000
       - DB_NAME=postgres
+    env_file:
+      - ./.env
 
     depends_on:
       - postgres-db

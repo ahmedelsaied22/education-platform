@@ -5,27 +5,34 @@ import { User } from 'src/DB/entities/user.entity';
 import { VerifyEmailDTO } from 'src/common/DTO`s/auth/verifyEmail.dto';
 import { LoginDTO } from 'src/common/DTO`s/auth/login.dto';
 import { AuthGaurd, type AuthReq } from 'src/common/Gaurds/auth.guard';
+import { ApiBody } from '@nestjs/swagger';
+import { IsEmail } from 'class-validator';
+import { ResendVerification } from 'src/common/DTO`s/auth/resendVerification.dto';
 
 @Controller('auth')
 export class AuthController {
     constructor(private readonly authService: AuthService) {}
 
     @Post('register')
+    @ApiBody({ type: CreateUserDTO, description: 'create new user' })
     async register (@Body() UserData: CreateUserDTO) {
         return await this.authService.register(UserData as Partial<User>);
     }
 
     @Post('verify-email')
+    @ApiBody({ type: VerifyEmailDTO, description: 'verify your email'})
     async verifyEmail(@Body() body: VerifyEmailDTO) {
         return await this.authService.verifyEmail(body);
     }
 
     @Post('resend-verification')
-    async resendVerification(@Body() body: {email: string}) {
+    @ApiBody({type: ResendVerification, description: 'resend verification code'})
+    async resendVerification(@Body() body: ResendVerification) {
         return await this.authService.resendVerification(body);
     }
 
     @Post('login')
+    @ApiBody({ type: LoginDTO, description: 'login to your account'})
     async login(@Body() body: LoginDTO) {
         return await this.authService.login(body);
     }
