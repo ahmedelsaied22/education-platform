@@ -121,6 +121,9 @@ E-Learning Platform Backend (NestJS) 🚀
 
 3. Video Module (VdoCipher Integration)
 التكامل مع API الخاص بـ VdoCipher لتوليد روابط تشغيل آمنة ومشفرة (OTP/Playback) تمنع تحميل الفيديوهات أو تسريبها.
+
+<img src="./images/upload-url - vdoCipher.png">
+
 4. Payments Module (Stripe & Dynamic Pricing)
 Stripe Integration: معالجة عمليات الدفع والاشتراكات.
 Dynamic Pricing Guard: الـ Middleware بيحدد الـ IP الخاص بالطلب لمعرفة الدولة، وبناءً عليه بيتم تطبيق السعر المخصص (داخل مصر / خارج مصر).
