@@ -1,6 +1,7 @@
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Section } from "./section.entity";
 import { LessonProgress } from "./lessonProgress.entity";
+import { Video } from "./video.entity";
 
 @Entity()
 export class Lesson {
@@ -13,12 +14,6 @@ export class Lesson {
     @Column()
     videoUrl?: string;
 
-    @Column()
-    pdfUrl?: string;
-
-    @Column()
-    duration?: number;
-
     // order of the lesson in the section
     @Column()
     order?: number;
@@ -28,4 +23,7 @@ export class Lesson {
 
     @OneToMany(() => LessonProgress, (progress) => progress.lesson)
     progresses?: LessonProgress[];
+
+    @OneToMany(() => Video, (video) => video.lesson)
+    video?: Video;
 }

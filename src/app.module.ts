@@ -6,6 +6,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { CoursesModule } from './courses/courses.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
+import { VideoModule } from './vdoCipher/vdoCipher.module';
+import { LessonsModule } from './lessons/lessons.module';
+import { SectionsModule } from './sections/sections.module';
 
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true }),
@@ -23,10 +26,12 @@ import { CloudinaryModule } from './cloudinary/cloudinary.module';
 }),
     AuthModule,
     CoursesModule,
-    CloudinaryModule
+    CloudinaryModule,
+    VideoModule,
+    LessonsModule,
+    SectionsModule
   ],
   controllers: [AppController],
   providers: [AppService],
-  // Entities: [User],
 })
 export class AppModule {}

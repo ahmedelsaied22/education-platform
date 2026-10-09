@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { Course } from "./course.entity";
 import { Lesson } from "./lesson.entity";
 
@@ -15,6 +15,7 @@ export class Section {
 
     // order of the section in the course
     @Column()
+    @Unique(['course', 'order'])
     order?: number;
 
     @ManyToOne(() => Course, (course) => course.sections, { onDelete: "CASCADE" })

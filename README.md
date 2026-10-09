@@ -121,10 +121,16 @@ E-Learning Platform Backend (NestJS) 🚀
 
 3. Video Module (VdoCipher Integration)
 التكامل مع API الخاص بـ VdoCipher لتوليد روابط تشغيل آمنة ومشفرة (OTP/Playback) تمنع تحميل الفيديوهات أو تسريبها.
+
+  <img src="./images/upload-url - vdoCipher.png">
+
+
 4. Payments Module (Stripe & Dynamic Pricing)
 Stripe Integration: معالجة عمليات الدفع والاشتراكات.
 Dynamic Pricing Guard: الـ Middleware بيحدد الـ IP الخاص بالطلب لمعرفة الدولة، وبناءً عليه بيتم تطبيق السعر المخصص (داخل مصر / خارج مصر).
 Refund Guard: نظام حماية يمنع استرداد الأموال (Refund) إذا تخطى تقدم الطالب في الكورس نسبة 25% (يتم التحقق منها عبر قاعدة البيانات قبل إتمام طلب الاسترداد).
+
+
 5. Wallets & Commissions Module
 حساب النسب تلقائياً: عند شراء أي كورس، يقوم الـ Service بتقسيم المبلغ برمجياً: 60% لمحفظة المحاضر و 40% لمحفظة المنصة.
 Withdrawal System: نظام لإدارة طلبات السحب، حيث يتم التحقق من أن رصيد المحاضر يتخطى الحد الأدنى المسموح به قبل تحويل حالة الطلب إلى Approved.
