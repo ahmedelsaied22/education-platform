@@ -3,6 +3,7 @@ import { Course } from "./course.entity";
 import { Lesson } from "./lesson.entity";
 
 @Entity()
+@Unique(['courseId', 'order'])
 export class Section {
     @PrimaryGeneratedColumn()
     id?: number;
@@ -15,8 +16,10 @@ export class Section {
 
     // order of the section in the course
     @Column()
-    @Unique(['course', 'order'])
     order?: number;
+
+    @Column()
+    courseId?: number;
 
     @ManyToOne(() => Course, (course) => course.sections, { onDelete: "CASCADE" })
     @JoinColumn({ name: "courseId" })
