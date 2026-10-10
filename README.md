@@ -122,16 +122,40 @@ E-Learning Platform Backend (NestJS) 🚀
 3. Video Module (VdoCipher Integration)
 التكامل مع API الخاص بـ VdoCipher لتوليد روابط تشغيل آمنة ومشفرة (OTP/Playback) تمنع تحميل الفيديوهات أو تسريبها.
 
+<<<<<<< HEAD
   <img src="./images/upload-url - vdoCipher.png">
 
+=======
+<img src="./images/upload-url - vdoCipher.png">
+>>>>>>> 5f3c55e14d79de7a2615b1ba2c154201df304151
 
-4. Payments Module (Stripe & Dynamic Pricing)
+4. Section Module (Completed Before Payments)
+تمت إضافة وحدة Sections كطبقة تنظيمية أساسية داخل كل كورس، وركزت على بناء هيكلية تعليمية منطقية قبل الانتقال إلى الدفع والاشتراكات. تم إنشاء الـ Entity الخاص بالـ Section وربطه بـ Course، مع إعداد ترتيب فريد لكل قسم داخل الكورس باستخدام الحقل order، بالإضافة إلى ربطه بـ Lessons بحيث يمكن لكل قسم أن يحتوي على مجموعة من الدروس.
+
+تم تنفيذ كامل الـ CRUD الخاص بالـ Sections، بما في ذلك:
+- إنشاء قسم جديد داخل كورس معين.
+- تحديث عنوان/وصف/ترتيب القسم.
+- حذف القسم مع الحفاظ على سلامة العلاقات داخل قاعدة البيانات.
+- جلب كل الأقسام الخاصة بالكورس.
+- جلب قسم محدد حسب ترتيب القسم داخل الكورس.
+
+كما تم تطبيق قواعد الأمان والـ Validation بشكل عملي:
+- التحقق من صلاحية CourseId و SectionId قبل تنفيذ أي عملية.
+- منع تكرار اسم القسم داخل نفس الكورس.
+- التأكد من أن المستخدم صاحب الصلاحية هو instructor أو admin فقط.
+- تنظيم الأقسام حسب order ASC لعرض منظم ومنطقي في الواجهة أو في API.
+
+هذه الوحدة كانت خطوة مهمة جدًا لأنها مهدت الطريق لبنية المنصة بشكل صحيح: Course -> Section -> Lesson -> Video، وهو الهيكل المطلوب لتوسيع المشروع لاحقًا نحو Payments و Wallets.
+
+<img src="./images/create-section - http 10_10_2026 6_50_22 AM.png">
+
+5. Payments Module (Stripe & Dynamic Pricing)
 Stripe Integration: معالجة عمليات الدفع والاشتراكات.
 Dynamic Pricing Guard: الـ Middleware بيحدد الـ IP الخاص بالطلب لمعرفة الدولة، وبناءً عليه بيتم تطبيق السعر المخصص (داخل مصر / خارج مصر).
 Refund Guard: نظام حماية يمنع استرداد الأموال (Refund) إذا تخطى تقدم الطالب في الكورس نسبة 25% (يتم التحقق منها عبر قاعدة البيانات قبل إتمام طلب الاسترداد).
 
 
-5. Wallets & Commissions Module
+6. Wallets & Commissions Module
 حساب النسب تلقائياً: عند شراء أي كورس، يقوم الـ Service بتقسيم المبلغ برمجياً: 60% لمحفظة المحاضر و 40% لمحفظة المنصة.
 Withdrawal System: نظام لإدارة طلبات السحب، حيث يتم التحقق من أن رصيد المحاضر يتخطى الحد الأدنى المسموح به قبل تحويل حالة الطلب إلى Approved.
 🛠️ التقنيات المستخدمة (Tech Stack)
@@ -144,11 +168,10 @@ Third-Party APIs: Stripe SDK, VdoCipher API
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-## Stay in touch
+## Stay in touch with me
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- Author - [Ahmed Elsaid Bedir]
+- Website - [https://a7medbedir22.lovable.app/]
 
 ## License
 
